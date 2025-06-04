@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Calculadora OTA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #f9fafb;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      gap: 30px;
+    }
+
+    .left-panel {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: white;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .left-panel img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 10px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .right-panel {
+      flex: 2;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .column {
+      background-color: white;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    .column h3 {
+      text-align: center;
+      font-size: 1.2rem;
+      color: #111827;
+      border-bottom: 2px solid #e5e7eb;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 600;
+      color: #374151;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #d1d5db;
+      border-radius: 8px;
+      background-color: #f3f4f6;
+      transition: border-color 0.2s ease;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #3b82f6;
+      background-color: #fff;
+    }
+
+    .column p {
+      text-align: center;
+      color: #6b7280;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Panel izquierdo: imagen del OTA -->
+  <div class="left-panel">
+    <img src="/public/images/ota_diagram.png" alt="Diagrama del OTA">
+  </div>
+
+  <!-- Panel derecho: formulario dividido -->
+  <div class="right-panel">
+    <!-- Requerimientos -->
+    <div class="column">
+      <h3>Requerimientos</h3>
+      {{#each requerimientos}}
+        <div class="form-group">
+          <label for="{{this.id}}">{{this.nombre}}</label>
+          <input type="number" name="{{this.id}}" id="{{this.id}}" step="any" required>
+        </div>
+      {{/each}}
+    </div>
+
+    <!-- Parámetros -->
+    <div class="column">
+      <h3>Parámetros</h3>
+      {{#each parametros}}
+        <div class="form-group">
+          <label for="{{this.id}}">{{this.nombre}}</label>
+          <input type="number" name="{{this.id}}" id="{{this.id}}" step="any">
+        </div>
+      {{/each}}
+    </div>
+
+    <!-- Resultados -->
+    <div class="column">
+      <h3>Resultados</h3>
+      <p>Aquí aparecerán los resultados.</p>
+    </div>
+  </div>
+
+</body>
+</html>
